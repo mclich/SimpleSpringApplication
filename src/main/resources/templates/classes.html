@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <main class="px-5 py-4">
+            <h1 class="fw-normal border-bottom">Classes</h1>
+            <div class="px-2 mt-4">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Year</th>
+                            <th class="text-center">Class Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="clazz: ${classes}">
+                            <td class="text-center align-middle" th:text="${clazz.getTitle()}"></td>
+                            <td class="text-center align-middle" th:text="${clazz.getYear().format(yearFormat)}"></td>
+                            <td class="text-center align-middle" th:text="${clazz.getCPoints()}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<div th:fragment="pop-ups">
+    <div th:if="${#authorization.expr('hasAuthority(''USER'')')&&#session!=null&&#session.getAttribute('login')!=null}"
+         class="toast position-fixed start-0 bottom-0 ms-4 mb-4"
+         role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <i class="far fa-bell me-2"></i>
+            <strong class="d-flex me-auto">Welcome back,<p class="text-success ms-1 mb-0" th:text="${#session.getAttribute('login')}"></p></strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="d-flex toast-body">You are logged in as<p class="fw-bold ms-1 mb-0" th:text="${#authentication.name}"></p></div>
+        <div class="visually-hidden" th:text="${#session.setAttribute('login', null)}"></div>
+    </div>
+    <div th:if="${#session!=null&&#session.getAttribute('login')=='error'}"
+         class="toast position-fixed start-0 bottom-0 ms-4 mb-4"
+         role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <i class="far fa-bell me-2"></i>
+            <strong class="d-flex me-auto">Something goes wrong!</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="d-flex toast-body">Invalid login or password</div>
+        <div class="visually-hidden" th:text="${#session.setAttribute('login', null)}"></div>
+    </div>
+    <div th:if="${#session!=null&&#session.getAttribute('logout')=='logout'}"
+         class="toast position-fixed start-0 bottom-0 ms-4 mb-4"
+         role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <i class="far fa-bell me-2"></i>
+            <strong class="me-auto">Hope you will be back soon!</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">You are logged out</div>
+        <div class="visually-hidden" th:text="${#session.setAttribute('logout', null)}"></div>
+    </div>
+    <div th:if="${#session!=null&&#session.getAttribute('signUp')=='signUp'}"
+         class="toast position-fixed start-0 bottom-0 ms-4 mb-4"
+         role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <i class="far fa-bell me-2"></i>
+            <strong class="me-auto">You have registered successfully!</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">You can<a class="mx-1" role="button" onclick="$('.dropdown-menu').show()">sign in</a>now</div>
+        <div class="visually-hidden" th:text="${#session.setAttribute('signUp', null)}"></div>
+    </div>
+    <script>$(document).ready(function(){[].slice.call($('.toast')).map(function(toast){return new bootstrap.Toast(toast).show()})})</script>
+</div>

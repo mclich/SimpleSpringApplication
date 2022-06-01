@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <div class="container pt-4 pb-2 mb-4">
+            <div class="row justify-content-center">
+                <div class="col-md-3 card shadow-lg border-0 p-5 me-2">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-circle fa-8x"></i>
+                        <h5 class="my-3" th:text="${user.fullName}"></h5>
+                        <a class="btn btn-primary" type="button" role="button" href="/profile/edit">Edit Profile<i class="far fa-edit ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 card shadow-lg border-0 p-4 ms-2">
+                    <div class="container card-body">
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0">Login:</p>
+                            <p class="col-md-8 px-0" th:text="${user.login}"></p>
+                            <hr class="col-xs-12"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0">Full Name:</p>
+                            <p class="col-md-8 px-0" th:text="${user.fullName}"></p>
+                            <hr class="border-0 col-xs-12"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0">Email:</p>
+                            <p class="col-md-8 px-0" th:text="${user.email}"></p>
+                            <hr class="col-xs-12"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0">Gender:</p>
+                            <p class="col-md-8 px-0" th:text="${user.gender?'Male':'Female'}"></p>
+                            <hr class="col-xs-12"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0">Status:</p>
+                            <p class="col-md-8 px-0" th:text="${user.status.toString()}"></p>
+                            <hr class="col-xs-12"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-md-4 fw-bold px-0 mb-0">Roles:</p>
+                            <p class="col-md-8 px-0 mb-0" th:text="${T(com.github.mclich.ssa.model.Role).arrayToString(user.roles)}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

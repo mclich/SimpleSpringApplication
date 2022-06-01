@@ -1,0 +1,69 @@
+<head th:fragment="head">
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+    <!--title th:text="${title!=null?(title.equals('You-Zitsu')?title:title+' | You-Zitsu'):'No title | You-Zitsu'}"></title-->
+    <title th:text="${T(com.github.mclich.ssa.Constants).pathToTitle(#request.getRequestURI())}"></title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        body
+        {
+            margin-top: 5rem;
+        }
+        .form-i
+        {
+            width: 1.5rem;
+        }
+        .form-si
+        {
+            max-width: 37.5rem;
+        }
+        .form-lm
+        {
+            margin-left: 2.3rem;
+        }
+        .form-ii
+        {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+        .arrow-off::before, .arrow-off::after
+        {
+            display: none;
+        }
+        .search
+        {
+            font-family: 'Font Awesome 5 Free', var(--bs-body-font-family) !important;
+            font-weight: 501 !important;
+        }
+        .has-search .form-control
+        {
+            padding-left: 2.375rem;
+        }
+        .has-search .form-control-feedback
+        {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+        .dropdown-menu
+        {
+            min-width: 18rem;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            top: 100% !important;
+        }
+    </style>
+</head>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <div class="container px-4 py-5">
+            <div class="d-flex justify-content-center py-5">
+                <div class="col-6 me-4">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Welcome to the class of superiority</h1>
+                    <p class="lead">Kōdo Ikusei Senior High School, a leading prestigious school with state-of-the-art facilities where nearly 100% of students go on to university or find employment. The students there have the freedom to wear any hairstyle and bring any personal effects they desire. Kōdo Ikusei is a paradise-like school, but the truth is that only the most superior of students receive favorable treatment.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-start">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">About</button>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center col-5">
+                    <img class="img-fluid shadow-lg" src="https://i.imgur.com/3qCXUvz.png" alt="Main Image"/>
+                </div>
+            </div>
+        </div>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

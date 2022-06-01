@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <main class="px-5 py-4">
+            <h1 class="fw-normal border-bottom" th:text="|${student.firstName} ${student.lastName}|"/>
+            <div class="d-flex justify-content-between align-items-start mt-4">
+                <div class="container-fluid d-flex flex-column mx-2">
+                    <h3 class="fw-normal border-bottom">Assessment</h3>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Academic Ability</th>
+                                <th class="text-center">Intellect</th>
+                                <th class="text-center">Judgment Ability</th>
+                                <th class="text-center">Physical Ability</th>
+                                <th class="text-center">Cooperativeness</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center align-middle" th:text="${perf.academic}"/>
+                                <td class="text-center align-middle" th:text="${perf.intellectual}"/>
+                                <td class="text-center align-middle" th:text="${perf.personal}"/>
+                                <td class="text-center align-middle" th:text="${perf.physical}"/>
+                                <td class="text-center align-middle" th:text="${perf.cooperative}"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        const green=["A+", "A", "A-", "B+", "B"];
+                        const yellow=["B-", "C+", "C", "C-", "D+"];
+                        const red=["D", "D-", "E+", "E", "E-"];
+                        let cells=document.getElementsByTagName("td");
+                        for(let i=0; i<cells.length; i++)
+                        {
+                            if(green.indexOf(cells[i].innerText)>-1) cells[i].className+=" table-success";
+                            else if(yellow.indexOf(cells[i].innerText)>-1) cells[i].className+=" table-warning";
+                            else if(red.indexOf(cells[i].innerText)>-1) cells[i].className+=" table-danger";
+                        }
+                    </script>
+                </div>
+                <div class="d-flex flex-column border pb-2 mx-2">
+                    <img class="border-bottom p-1" th:src="@{${student.imagePath}}" alt="Profile" width="270"/>
+                    <div class="container mt-2" style="width: 270px;">
+                        <div class="row row-cols-2">
+                            <p class="fw-bold mb-2">Name: </p>
+                            <p class="mb-2" th:text="${student.firstName}"/>
+                            <p class="fw-bold mb-2">Surname: </p>
+                            <p class="mb-2" th:text="${student.lastName}"/>
+                            <p class="fw-bold mb-2">Birthday: </p>
+                            <p class="mb-2" th:text="${student.birthDate.format(dateFormat)}"/>
+                            <p class="fw-bold mb-0">Gender: </p>
+                            <p class="mb-0" th:text="${student.gender}?'Male':'Female'"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

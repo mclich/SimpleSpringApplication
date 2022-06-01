@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <div class="form-si container py-5">
+            <h1 class="text-center display-6 fw-bold lh-1 mb-3">Sign Up</h1>
+            <form modelAttribute="user" th:object="${user}" th:action="@{/sign-up}" method="post">
+                <div class="d-flex flex-column mb-3">
+                    <label class="form-label form-lm mb-1">Login</label>
+                    <label class="d-flex align-items-center">
+                        <i class="form-i fas fa-at fa-lg me-3"></i>
+                        <input th:class="${#fields.hasErrors('login')?'is-invalid ':''}+'form-control'" type="text" th:field="${user.login}"/>
+                    </label>
+                    <span class="form-ii form-lm" th:if="${#fields.hasErrors('login')}" th:errors="${user.login}"></span>
+                </div>
+                <div class="d-flex flex-column mb-3">
+                    <label class="form-label form-lm mb-1">Email</label>
+                    <label class="d-flex align-items-center">
+                        <i class="form-i fas fa-envelope fa-lg me-3"></i>
+                        <input th:class="${#fields.hasErrors('email')?'is-invalid ':''}+'form-control'" type="email" th:field="${user.email}"/>
+                    </label>
+                    <span class="form-ii form-lm" th:if="${#fields.hasErrors('email')}" th:errors="${user.email}"></span>
+                </div>
+                <div class="d-flex mb-3">
+                    <i class="form-i fas fa-address-card fa-lg me-3" style="margin-top: 2.4rem"></i>
+                    <div class="container">
+                        <div class="row row-cols-2">
+                            <label class="form-label p-0 pe-2 mb-0">Name
+                                <input th:class="${#fields.hasErrors('firstName')?'is-invalid ':''}+'form-control mt-1'" type="text" th:field="${user.firstName}"/>
+                                <span class="form-ii" th:if="${#fields.hasErrors('firstName')}" th:errors="${user.firstName}"></span>
+                            </label>
+                            <label class="form-label p-0 ps-2 mb-0">Surname
+                                <input th:class="${#fields.hasErrors('lastName')?'is-invalid ':''}+'form-control mt-1'" type="text" th:field="${user.lastName}"/>
+                                <span class="form-ii" th:if="${#fields.hasErrors('lastName')}" th:errors="${user.lastName}"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column mb-3">
+                    <label class="form-label form-lm mb-1">Gender</label>
+                    <label class="form-check-inline">
+                        <i class="fas fa-user fa-lg me-3"></i>
+                        <input class="form-check-input me-1" name="gender" type="radio" value="true" th:checked="${user.gender}" th:field="${user.gender}"/>
+                        <label class="form-check-label me-3">Male</label>
+                        <input class="form-check-input me-1" name="gender" type="radio" value="false" th:checked="${user.gender}" th:field="${user.gender}"/>
+                        <label class="form-check-label">Female</label>
+                    </label>
+                    <span class="form-ii form-lm" th:if="${#fields.hasErrors('gender')}" th:errors="${user.gender}"></span>
+                </div>
+                <div class="d-flex flex-column mb-3">
+                    <label class="form-label form-lm mb-1">Password</label>
+                    <label class="d-flex align-items-center">
+                        <i class="form-i fas fa-lock fa-lg me-3"></i>
+                        <input th:class="${#fields.hasErrors('password')?'is-invalid ':''}+'form-control'" type="password" autocomplete="on" th:field="${user.password}"/>
+                    </label>
+                    <span class="form-ii form-lm" th:if="${#fields.hasErrors('password')}" th:errors="${user.password}"></span>
+                </div>
+                <div class="d-flex flex-column mb-3">
+                    <!--/*@thymesVar id="pwcError" type="java.lang.String"*/-->
+                    <label class="form-label form-lm mb-1">Confirm Password</label>
+                    <label class="d-flex align-items-center">
+                        <i class="form-i fas fa-key fa-lg me-3"></i>
+                        <input th:class="${pwcError!=null?'is-invalid ':''}+'form-control'" type="password" autocomplete="on" th:field="${user.CPassword}"/>
+                    </label>
+                    <span class="form-ii form-lm" th:if="${pwcError!=null}" th:text="#{${pwcError}}"></span>
+                </div>
+                <!--/*@thymesVar id="termsError" type="java.lang.String"*/-->
+                <label th:class="${termsError==null?'mb-4 ':''}+'form-check d-flex justify-content-center'">
+                    <input class="form-check-input me-2" type="checkbox" value="true" name="terms"/>
+                    <label class="form-check-label">I agree all statements in <a class="text-decoration-none">Terms of service</a></label>
+                </label>
+                <span class="form-ii d-flex justify-content-center mb-4" th:if="${termsError!=null}" th:text="#{${termsError}}"></span>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-primary shadow">Register</button>
+                </div>
+            </form>
+        </div>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <div class="text-center display-4 p-4">Oops, something goes wrong! Looks like you can't access that page</div>
+        <div class="container w-25 pt-5 pb-4">
+            <div class="row">
+                <p class="col-md-4 fw-bold px-0">User:</p>
+                <p class="col-md-8 px-0" th:text="${#authentication.name}"></p>
+                <hr class="col-xs-12"/>
+            </div>
+            <div class="row" th:if="${existingUser!=null}">
+                <p class="col-md-4 fw-bold px-0">Full Name:</p>
+                <p class="col-md-8 px-0" th:text="${existingUser.fullName}"></p>
+                <hr class="col-xs-12"/>
+            </div>
+            <div class="row">
+                <p class="col-md-4 fw-bold px-0">Reason:</p>
+                <p class="col-md-8 px-0" th:text="${excMsg}"></p>
+            </div>
+        </div>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>

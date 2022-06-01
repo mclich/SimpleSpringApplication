@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:insert="snippets/head::head"></div>
+    <body>
+        <div th:insert="snippets/header::header"></div>
+        <div th:insert="snippets/pop-ups::pop-ups"></div>
+        <main class="px-5 py-4">
+            <h1 class="fw-normal border-bottom">Students</h1>
+            <script>
+                if([[${#authorization.expr('hasAuthority(''ADMIN'')')}]])
+                {
+                    anchors.options.base="students";
+                    anchors.options.icon='＋';
+                    anchors.add('h1');
+                }
+            </script>
+            <div class="px-2 mt-4">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Surname</th>
+                            <th class="text-center">Birthday</th>
+                            <th class="text-center">Gender</th>
+                            <th class="text-center">Class</th>
+                            <th class="text-center">Private Points</th>
+                            <th class="text-center">Protection Points</th>
+                            <th class="text-center">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" th:each="student: ${students}">
+                            <td class="text-center align-middle" th:text="${student.firstName}"/>
+                            <td class="text-center align-middle" th:text="${student.lastName}"/>
+                            <td class="text-center align-middle" th:text="${student.birthDate.format(dateFormat)}"/>
+                            <td class="text-center align-middle" th:text="${student.gender}?'Male':'Female'"/>
+                            <td class="text-center text-uppercase align-middle" th:text="${student.clazz.title}"/>
+                            <td class="text-center align-middle" th:text="${student.PPoints}"/>
+                            <td class="text-center align-middle" th:text="${student.DPoints}"/>
+                            <td class="text-center align-middle">
+                                <a class="btn btn-primary border-0 shadow my-1" role="button" th:href="@{'/'+${student.firstName.toLowerCase()}+'-'+${student.lastName.toLowerCase()}}">Show Profile</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <div th:insert="snippets/footer::footer"></div>
+    </body>
+</html>
